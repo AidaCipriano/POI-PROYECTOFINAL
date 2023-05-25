@@ -36,7 +36,9 @@ class Chats extends React.Component {
                     <Navigation />
                     <div className='homeT'>
                         <div className="containerT">
+                            
                             <Sidebar/> 
+                            
                             <Chat/>
                         </div>
                     </div>

@@ -35,7 +35,8 @@ const Messages = () => {
 
   const toggleEncrypt = () => {
       setEncriptar(!encriptar)
-      console.log(encriptar)
+     // console.log(encriptar)
+    
   }
 
   //Funciones para encriptar los mensajes
@@ -44,7 +45,7 @@ const Messages = () => {
           var textoCifrado = CryptoJS.AES.encrypt(texto, "poi").toString();
           return textoCifrado;
       } else {
-          return texto;
+          return "";
       }
   }
 
@@ -52,7 +53,7 @@ const Messages = () => {
 
   const { data } = useContext(ChatConext);
   const [err, setErr] = useState(false);
-  //const [cifrado, setCifrado] = useState(false);
+  const [cifrado, setCifrado] = useState(false);
 
   const [idGroup, setIdGroup] = useState("null");
   const [param, setParam] = useState("null");
@@ -78,8 +79,7 @@ const Messages = () => {
   
     const unSubGroup = onSnapshot(doc(db, "chats", idGroup), (doc) => {
         doc.exists() && setMessagesGroup(doc.data().messages)
-       // console.log(idGroup)
-        
+
     })
     return () => {
         unSubGroup()
@@ -94,13 +94,10 @@ const Messages = () => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        //console.log("Document data:", docSnap.data());
         setIsGroup(true);
         setIdGroup(g);
-       // console.log("es grupo")
       } else {
-        // doc.data() will be undefined in this case
-       // console.log("No such document!");
+       
         setIsGroup(false);
         setIdGroup("null");
         setMessagesGroup([])
@@ -126,23 +123,31 @@ const Messages = () => {
             }else{
                alert("Geolocation is not supported by this browser.");
             }
-          }
-         getLocation()
-        function showPosition(position) {
-              //var str="Longitude: "+ position.coords.longitude+"Latitude:"+ position.coords.latitude
-              //var str="Longitude: "+ position.coords.longitude+"Latitude:"+ position.coords.latitude
-              var str="https://www.google.com/maps/place/" + position.coords.longitude + "," +- position.coords.latitude
-
+          
+        }
+           
+        getLocation()
+        
+         function showPosition(position) {
+              
+           
+ 
+              
+              var str="https://www.google.com/maps/place/" + position.coords.latitude + "," + position.coords.longitude
 
               document.getElementById("mensaje").value=str
-          }
-          function showError( error ) {
-              console.log( 'getCurrentPosition returned error', error);
-          }
-  }
-  const handleSendMessage = async () => {
+          
+            }
 
-    if (chatIsGroup) {
+          function showError( error ) {
+            console.log( 'getCurrentPosition returned error', error);
+          }
+  
+        }
+  
+        const handleSendMessage = async () => {
+
+        if (chatIsGroup) {
         //console.log("es grupo")
         if (img) {
             const storageRef = ref(storage, uuid());
@@ -158,7 +163,8 @@ const Messages = () => {
                         await updateDoc(doc(db, "chats", idGroup), {
                             messages: arrayUnion({
                                 id: uuid(),
-                                text: cifrar(text),
+                                encriptado:  cifrar(text), 
+                                text: text,
                                 senderId: currentUser.uid,
                                 date: Timestamp.now(),
                                 img: downloadURL,
@@ -174,7 +180,8 @@ const Messages = () => {
             await updateDoc(doc(db, "chats", idGroup), {
                 messages: arrayUnion({
                     id: uuid(),
-                    text: cifrar(text),
+                    encriptado:  cifrar(text), 
+                    text: text,
                     senderId: currentUser.uid,
                     date: Timestamp.now(),
                     displayName: currentUser.displayName,
@@ -197,7 +204,8 @@ const Messages = () => {
                         await updateDoc(doc(db, "chats", data.chatId), {
                             messages: arrayUnion({
                                 id: uuid(),
-                                text: cifrar(text),
+                                encriptado:  cifrar(text), 
+                                text: text,
                                 senderId: currentUser.uid,
                                 date: Timestamp.now(),
                                 displayName: currentUser.displayName,
@@ -212,13 +220,16 @@ const Messages = () => {
             await updateDoc(doc(db, "chats", data.chatId), {
                 messages: arrayUnion({
                     id: uuid(),
-                    text: cifrar(text),
+                    encriptado:  cifrar(text), 
+                    text: text,
                     senderId: currentUser.uid,
                     date: Timestamp.now(),
                     displayName: currentUser.displayName,
                 })
             })
         }
+
+        
 
         await updateDoc(doc(db, "userChats", currentUser.uid), {
             [data.chatId + ".lastMessage"]: {
@@ -239,9 +250,9 @@ const Messages = () => {
     setIsGroup(false);
     setIdGroup("null")
     setMessagesGroup([])
-    console.log("ya lo puse falso")
-    setText("");
-    setImg(null);
+    //console.log("ya lo puse falso")
+    //setText("");
+    //setImg(null);
 };
 
   
@@ -291,6 +302,7 @@ const Messages = () => {
           </Form>
           
           <Form.Control  src={Img} type="file" onChange={e => setImg(e.target.files[0])}>
+            
          </Form.Control>
             
             

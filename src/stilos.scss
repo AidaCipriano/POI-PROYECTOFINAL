@@ -199,12 +199,15 @@
   
           .userChatInfoT {
             span {
+              
               font-size: 18px;
-              font-weight: 500;
+              
             }
             p {
+              position: fixed;
               font-size: 14px;
               color: lightgray;
+              
             }
           }
         }
@@ -232,8 +235,27 @@
           object-fit: cover;
           
         }
-  
+        
+        .online{
+          background-color: #14e966;
+          height: 1.5vh;
+          width: 1.5vh;
+          border-radius: 50%;
+          
+
+        }
+
+        .offline{
+          background-color: #e91414;
+          height: 1.5vh;
+          width: 1.5vh;
+          border-radius: 50%;
+          
+
+        }
+
         .chatIconsT {
+          border: 2px solid blue;
           display: flex;
           gap: 10%;
   

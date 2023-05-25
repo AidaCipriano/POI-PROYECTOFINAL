@@ -48,6 +48,7 @@ const Signup = () => {
               displayName,
               email,
               photoURL: downloadURL,
+              estado: "online"
             });
              
             //create empty user chats on firestore
