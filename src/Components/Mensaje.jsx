@@ -55,7 +55,7 @@ export const Mensaje = ({ message }) => {
             <div className="ms-5 me-auto ml-5">
                 
                 {message.text && descifrar(message.text)}
-                {/*message.img && <img src={message.img} alt="" width="100px" className='fluid' />*/}
+                {message.img && <img src={message.img} alt="" width="100px" className='fluid' />}
             </div>
         </ListGroup.Item>
     );

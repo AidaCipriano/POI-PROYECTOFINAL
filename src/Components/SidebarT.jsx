@@ -7,28 +7,12 @@ import GroupButton from './GroupButton';
 
 const Sidebar = () => {
   return (
-    <div>
-
-   
-      <div className="sidebarT">
-        
-        <Navbar />
-        <Search/>
-        <Chats/> 
-        
-        
-        
-      
-      </div>
-      <div className="espacios"></div>
-      <div  >
-        <GroupButton />
-      </div>
-      
-      
+    <div className="sidebarT">
+      <GroupButton />
+      <Navbar />
+      <Search/>
+      <Chats/>
     </div>
-    
-    
   );
 };
 

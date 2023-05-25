@@ -1,17 +1,28 @@
-
+import Navigation from '../Components/NavigationLayout';
+import Badge from 'react-bootstrap/Badge';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
+import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Container } from 'react-bootstrap';
 import { collection, query, where, getDocs, serverTimestamp, onSnapshot, doc, updateDoc, Timestamp } from "firebase/firestore";
-
+import Search from '../Components/Search';
 import { db, storage } from '../firebase';
+import { arrayUnion, arrayRemove } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useRef } from 'react';
 import {  Firestore, setDoc } from "firebase/firestore";
 
 //Bootstrap
-
+import InputGroup from 'react-bootstrap/InputGroup';
+import { useContext } from 'react';
+import { ChatConext } from '../Context/ChatContext';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { v4 as uuid } from "uuid";
-
+import { AuthConext } from '../Context/AuthContext';
+import Image from 'react-bootstrap/Image'
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate, Link } from "react-router-dom";
@@ -65,8 +76,9 @@ const GroupButton = () => {
 
     return (
         <>
-         
-         <a class="bn39" onClick={handleShow}><span class="bn39span">Crear chat grupal</span></a>
+            
+                
+            <a class="bn39" onClick={handleShow}><span class="bn39span">Crear chat grupal</span></a>
             
 
             <Modal show={show} onHide={handleClose}>

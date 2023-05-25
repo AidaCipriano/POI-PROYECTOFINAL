@@ -3,9 +3,13 @@ import React, { useContext, useEffect, useState} from "react";
 import { ChatConext } from "../Context/ChatContext";
 import { db } from "../firebase";
 import Message from "./MessageT";
+//import MessageGroup from "./MessageTG";
 import MessageGroup from "./MessageGroup";
 import "../stilos.scss";
 import "./MessagesT.css";
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
+import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -20,23 +24,254 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import {storage } from '../firebase';
 import { useRef } from 'react';
 import Cam from "../img/cam.png";
-import Img from "../img/img.png";
-import Send from "../img/send.png"
-import Map from "../img/mapa.png"
 import Attach from "../img/attach.png";
 import { useCallback } from "react";
 
 
-
 const Messages = () => {
+
+  //const { data } = useContext(ChatConext);
+  //const [err, setErr] = useState(false);
+  ////const [cifrado, setCifrado] = useState(false);
+//
+  //const [idGroup, setIdGroup] = useState("null");
+  //const [messages, setMessages] = useState([]);
+  //const [messagesGroup, setMessagesGroup] = useState([]);
+//
+  //const [chatIsGroup, setIsGroup] = useState(false);
+//
+  //const { currentUser } = useContext(AuthConext);
+//
+  //
+//
+  //const descifrar = (texto) => {
+  //  var bytes = CryptoJS.AES.decrypt(texto, "poi");
+  //  var textoDescifrado = bytes.toString(CryptoJS.enc.Utf8);
+//
+  //  if (textoDescifrado) {
+  //      return textoDescifrado;
+  //  } else {
+  //      return texto;
+  //  }
+  //}
+//
+//
+  ////const ref = useRef();
+//
+ //
+//
+  ////Manejar estado de encriptacion
+  //const [encriptar, setEncriptar] = useState(false);
+//
+  //const toggleEncrypt = () => {
+  //    setEncriptar(!encriptar)
+  //    console.log(encriptar)
+  //}
+//
+  ////Funciones para encriptar los mensajes
+  //const cifrar = (texto) => {
+  //    console.log("AQUIIII")
+  //    if (encriptar) {
+  //        var textoCifrado = CryptoJS.AES.encrypt(texto, "poi").toString();
+  //        console.log("se encripto")
+  //        return textoCifrado;
+  //    } else {
+  //        console.log("No se encripto")
+  //        return texto;
+  //    }
+  //}
+//
+//
+  //useEffect(() => {
+  //  const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
+  //    doc.exists() && setMessages(doc.data().messages);
+  //  });
+//
+  //  return () => {
+  //    unSub();
+  //  };
+  //}, [data.chatId]);
+//
+  //useEffect(() => {
+  //    const unSubGroup = onSnapshot(doc(db, "chats", idGroup), (doc) => {
+  //        doc.exists() && setMessagesGroup(doc.data().messages)
+  //        console.log(idGroup)
+  //    })
+//
+  //    return () => {
+  //        unSubGroup()
+  //    }
+  //}, [idGroup]);
+//
+//
+  ////DIVISION PARA EL ENVIO DE MENSAJES
+  //const [text, setText] = useState("");
+  //const [img, setImg] = useState(null);
+//
+  //const handleSendMessageLocation = async () => {
+  //  navigator.geolocation.getCurrentPosition(showPosition, showError);
+  //  
+  //  function getLocation(){
+  //    if (navigator.geolocation){
+  //        navigator.geolocation.getCurrentPosition(showPosition);
+  //      }else{
+  //          alert("Geolocation is not supported by this browser.");
+  //      }
+  //    }
+  //    getLocation()
+  //    function showPosition(position) {
+  //      //var str="Longitude: "+ position.coords.longitude+"Latitude:"+ position.coords.latitude
+  //      //var str="Longitude: "+ position.coords.longitude+"Latitude:"+ position.coords.latitude
+  //      var str="https://www.google.com/maps/place/" + position.coords.longitude + "," +- position.coords.latitude
+//
+//
+  //      document.getElementById("mensaje").value=str
+  //    }
+  //    function showError( error ) {
+  //        console.log( 'getCurrentPosition returned error', error);
+  //    }
+  //}
+//
+  //const handleSendMessage = async () => {
+//
+  //    if (chatIsGroup) {
+  //        console.log("es grupo")
+  //        if (img) {
+  //            const storageRef = ref(storage, uuid());
+//
+  //            const uploadTask = uploadBytesResumable(storageRef, img);
+//
+  //            uploadTask.on(
+  //                (error) => {
+  //                    //TODO:Handle Error
+  //                },
+  //                () => {
+  //                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+  //                        await updateDoc(doc(db, "chats", idGroup), {
+  //                            messages: arrayUnion({
+  //                                id: uuid(),
+  //                                text: cifrar(text),
+  //                                senderId: currentUser.uid,
+  //                                date: Timestamp.now(),
+  //                                img: downloadURL,
+  //                                displayName: currentUser.displayName,
+  //                                photoURL: currentUser.photoURL,
+  //                            }),
+  //                        });
+  //                    });
+  //                }
+  //            );
+//
+  //        } else {
+  //            await updateDoc(doc(db, "chats", idGroup), {
+  //                messages: arrayUnion({
+  //                    id: uuid(),
+  //                    text: cifrar(text),
+  //                    senderId: currentUser.uid,
+  //                    date: Timestamp.now(),
+  //                    displayName: currentUser.displayName,
+  //                    photoURL: currentUser.photoURL,
+  //                })
+  //            })
+  //        }
+  //    } else {
+  //        if (img) {
+  //            const storageRef = ref(storage, uuid());
+//
+  //            const uploadTask = uploadBytesResumable(storageRef, img);
+//
+  //            uploadTask.on(
+  //                (error) => {
+  //                    //TODO:Handle Error
+  //                },
+  //                () => {
+  //                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+  //                        await updateDoc(doc(db, "chats", data.chatId), {
+  //                            messages: arrayUnion({
+  //                                id: uuid(),
+  //                                text: cifrar(text),
+  //                                senderId: currentUser.uid,
+  //                                date: Timestamp.now(),
+  //                                img: downloadURL,
+  //                            }),
+  //                        });
+  //                    });
+  //                }
+  //            );
+//
+  //        } else {
+  //            await updateDoc(doc(db, "chats", data.chatId), {
+  //                messages: arrayUnion({
+  //                    id: uuid(),
+  //                    text: cifrar(text),
+  //                    senderId: currentUser.uid,
+  //                    date: Timestamp.now(),
+  //                })
+  //            })
+  //        }
+//
+  //        await updateDoc(doc(db, "userChats", currentUser.uid), {
+  //            [data.chatId + ".lastMessage"]: {
+  //                text,
+  //            },
+  //            [data.chatId + ".date"]: serverTimestamp(),
+  //        });
+//
+  //        await updateDoc(doc(db, "userChats", data.user.uid), {
+  //            [data.chatId + ".lastMessage"]: {
+  //                text,
+  //            },
+  //            [data.chatId + ".date"]: serverTimestamp(),
+  //        });
+  //    }
+//
+//
+  //    setIsGroup(false);
+  //    setIdGroup("null")
+  //    setMessagesGroup([])
+  //    console.log("ya lo puse falso")
+  //    setText("");
+  //    setImg(null);
+  //}
+//
+//
+  //// DIVISION PARA TRAER MSG DE UN GRUPO
+  //const handlerGroup = async (g) => {
+//
+  //    try {
+  //        console.log("chats/" + g)
+  //        const docRef = doc(db, "chats", g);
+  //        const docSnap = await getDoc(docRef);
+//
+  //        if (docSnap.exists()) {
+  //            console.log("Document data:", docSnap.data());
+  //            setIsGroup(true);
+  //            setIdGroup(g);
+  //        } else {
+  //            // doc.data() will be undefined in this case
+  //            console.log("No such document!");
+  //            setIsGroup(false);
+  //            setIdGroup("null");
+  //            setMessagesGroup([])
+  //        }
+//
+  //    } catch (err) {
+//
+  //    }
+  //}
+//
+  //const handlerDefaultUser = () => {
+//
+  //    console.log("yo")
+//
+  //}
 
   //Manejar estado de encriptacion
   const [encriptar, setEncriptar] = useState(false);
 
   const toggleEncrypt = () => {
       setEncriptar(!encriptar)
-     // console.log(encriptar)
-    
+      console.log(encriptar)
   }
 
   //Funciones para encriptar los mensajes
@@ -45,7 +280,7 @@ const Messages = () => {
           var textoCifrado = CryptoJS.AES.encrypt(texto, "poi").toString();
           return textoCifrado;
       } else {
-          return "";
+          return texto;
       }
   }
 
@@ -53,7 +288,7 @@ const Messages = () => {
 
   const { data } = useContext(ChatConext);
   const [err, setErr] = useState(false);
-  const [cifrado, setCifrado] = useState(false);
+  //const [cifrado, setCifrado] = useState(false);
 
   const [idGroup, setIdGroup] = useState("null");
   const [param, setParam] = useState("null");
@@ -76,10 +311,11 @@ const Messages = () => {
 
   useEffect(() => {
 
-  
+    console.log("?")
     const unSubGroup = onSnapshot(doc(db, "chats", idGroup), (doc) => {
         doc.exists() && setMessagesGroup(doc.data().messages)
-
+        //console.log(idGroup)
+        
     })
     return () => {
         unSubGroup()
@@ -89,21 +325,24 @@ const Messages = () => {
   // DIVISION PARA TRAER MSG DE UN GRUPO
   const handlerGroup = async (g) => {
     try {
-      console.log("chats/" + g)
+      //console.log("chats/" + g)
       const docRef = doc(db, "chats", g);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
+        //console.log("Document data:", docSnap.data());
         setIsGroup(true);
         setIdGroup(g);
+        //console.log("es grupo")
       } else {
-       
+        // doc.data() will be undefined in this case
+        //console.log("No such document!");
         setIsGroup(false);
         setIdGroup("null");
         setMessagesGroup([])
       }
     } catch (err) {
-     // console.log("no ps f")
+      //console.log("no ps f")
     }
     
   }
@@ -123,147 +362,136 @@ const Messages = () => {
             }else{
                alert("Geolocation is not supported by this browser.");
             }
-          
-        }
-           
-        getLocation()
-        
-         function showPosition(position) {
-              
-           
- 
-              
-              var str="https://www.google.com/maps/place/" + position.coords.latitude + "," + position.coords.longitude
+          }
+         getLocation()
+        function showPosition(position) {
+              //var str="Longitude: "+ position.coords.longitude+"Latitude:"+ position.coords.latitude
+              //var str="Longitude: "+ position.coords.longitude+"Latitude:"+ position.coords.latitude
+              var str="https://www.google.com/maps/place/" + position.coords.longitude + "," +- position.coords.latitude
+
 
               document.getElementById("mensaje").value=str
-          
-            }
-
-          function showError( error ) {
-            console.log( 'getCurrentPosition returned error', error);
           }
-  
-        }
-  
-        const handleSendMessage = async () => {
+          function showError( error ) {
+              console.log( 'getCurrentPosition returned error', error);
+          }
+  }
 
-        if (chatIsGroup) {
-        //console.log("es grupo")
-        if (img) {
-            const storageRef = ref(storage, uuid());
+  const handleSendMessage = async () => {
 
-            const uploadTask = uploadBytesResumable(storageRef, img);
+      if (chatIsGroup) {
+          console.log("es grupo")
+          if (img) {
+              const storageRef = ref(storage, uuid());
 
-            uploadTask.on(
-                (error) => {
-                    //TODO:Handle Error
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                        await updateDoc(doc(db, "chats", idGroup), {
-                            messages: arrayUnion({
-                                id: uuid(),
-                                encriptado:  cifrar(text), 
-                                text: text,
-                                senderId: currentUser.uid,
-                                date: Timestamp.now(),
-                                img: downloadURL,
-                                displayName: currentUser.displayName,
-                                photoURL: currentUser.photoURL,
-                            }),
-                        });
-                    });
-                }
-            );
+              const uploadTask = uploadBytesResumable(storageRef, img);
 
-        } else {
-            await updateDoc(doc(db, "chats", idGroup), {
-                messages: arrayUnion({
-                    id: uuid(),
-                    encriptado:  cifrar(text), 
-                    text: text,
-                    senderId: currentUser.uid,
-                    date: Timestamp.now(),
-                    displayName: currentUser.displayName,
-                    photoURL: currentUser.photoURL,
-                })
-            })
-        }
-    } else {
-        if (img) {
-            const storageRef = ref(storage, uuid());
+              uploadTask.on(
+                  (error) => {
+                      //TODO:Handle Error
+                  },
+                  () => {
+                      getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                          await updateDoc(doc(db, "chats", idGroup), {
+                              messages: arrayUnion({
+                                  id: uuid(),
+                                  text: cifrar(text),
+                                  senderId: currentUser.uid,
+                                  date: Timestamp.now(),
+                                  img: downloadURL,
+                                  displayName: currentUser.displayName,
+                                  photoURL: currentUser.photoURL,
+                              }),
+                          });
+                      });
+                  }
+              );
 
-            const uploadTask = uploadBytesResumable(storageRef, img);
+          } else {
+              await updateDoc(doc(db, "chats", idGroup), {
+                  messages: arrayUnion({
+                      id: uuid(),
+                      text: cifrar(text),
+                      senderId: currentUser.uid,
+                      date: Timestamp.now(),
+                      displayName: currentUser.displayName,
+                      photoURL: currentUser.photoURL,
+                  })
+              })
+          }
+      } else {
+          if (img) {
+              const storageRef = ref(storage, uuid());
 
-            uploadTask.on(
-                (error) => {
-                    //TODO:Handle Error
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                        await updateDoc(doc(db, "chats", data.chatId), {
-                            messages: arrayUnion({
-                                id: uuid(),
-                                encriptado:  cifrar(text), 
-                                text: text,
-                                senderId: currentUser.uid,
-                                date: Timestamp.now(),
-                                displayName: currentUser.displayName,
-                                img: downloadURL,
-                            }),
-                        });
-                    });
-                }
-            );
+              const uploadTask = uploadBytesResumable(storageRef, img);
 
-        } else {
-            await updateDoc(doc(db, "chats", data.chatId), {
-                messages: arrayUnion({
-                    id: uuid(),
-                    encriptado:  cifrar(text), 
-                    text: text,
-                    senderId: currentUser.uid,
-                    date: Timestamp.now(),
-                    displayName: currentUser.displayName,
-                })
-            })
-        }
+              uploadTask.on(
+                  (error) => {
+                      //TODO:Handle Error
+                  },
+                  () => {
+                      getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                          await updateDoc(doc(db, "chats", data.chatId), {
+                              messages: arrayUnion({
+                                  id: uuid(),
+                                  text: cifrar(text),
+                                  senderId: currentUser.uid,
+                                  date: Timestamp.now(),
+                                  img: downloadURL,
+                              }),
+                          });
+                      });
+                  }
+              );
 
-        
+          } else {
+              await updateDoc(doc(db, "chats", data.chatId), {
+                  messages: arrayUnion({
+                      id: uuid(),
+                      text: cifrar(text),
+                      senderId: currentUser.uid,
+                      date: Timestamp.now(),
+                  })
+              })
+          }
 
-        await updateDoc(doc(db, "userChats", currentUser.uid), {
-            [data.chatId + ".lastMessage"]: {
-                text,
-            },
-            [data.chatId + ".date"]: serverTimestamp(),
-        });
+          await updateDoc(doc(db, "userChats", currentUser.uid), {
+              [data.chatId + ".lastMessage"]: {
+                  text,
+              },
+              [data.chatId + ".date"]: serverTimestamp(),
+          });
 
-        await updateDoc(doc(db, "userChats", data.user.uid), {
-            [data.chatId + ".lastMessage"]: {
-                text,
-            },
-            [data.chatId + ".date"]: serverTimestamp(),
-        });
-    }
+          await updateDoc(doc(db, "userChats", data.user.uid), {
+              [data.chatId + ".lastMessage"]: {
+                  text,
+              },
+              [data.chatId + ".date"]: serverTimestamp(),
+          });
+      }
 
 
-    setIsGroup(false);
-    setIdGroup("null")
-    setMessagesGroup([])
-    //console.log("ya lo puse falso")
-    //setText("");
-    //setImg(null);
-};
+      setIsGroup(false);
+      setIdGroup("null")
+      setMessagesGroup([])
+      console.log("ya lo puse falso")
+      setText("");
+      setImg(null);
+  };
+
 
   
 
+  const handlerDefaultUser = () => {
 
+    console.log("yo")
+
+  }
 
   return (
     <section>
-      { /*onChange={(g) => handlerGroup(data.user?.displayName, g)}*/}
-      
-      {<div onClick={handlerGroup(data.user?.displayName)}> </div>}
+      {/* onChange={(g) => handlerGroup(data.user?.displayName, g)} */}
+      <Card.Title onClick={handlerDefaultUser} onChange={handlerGroup(data.user?.displayName)}>{data.user?.displayName}</Card.Title>
       <div className="messagesT">
       
 
@@ -279,7 +507,7 @@ const Messages = () => {
       <div className="inputT">
         <Form.Control id="mensaje" className="me-auto" placeholder="Mensaje a enviar..." onChange={e => setText(e.target.value)} />
         
-        <div className="sendT"> 
+        <div className="sendT">
           {/* <img src={Attach} alt="" /> 
           <input 
             type="file"
@@ -287,8 +515,7 @@ const Messages = () => {
             id="file"
             onChange={(e) => setImg(e.target.files[0])}
           />*/}
-          <div className="vr" />
-          <Button variant="primary" onClick={handleSendMessageLocation}><img src={Map} alt="" /> </Button>
+          <Button variant="primary" onClick={handleSendMessageLocation}>Enviar ubicación</Button>
           {/* <label htmlFor="fileInputM"> */}
             {/* <img id="iconM" src={Attach} /> */}
           {/* </label> */}
@@ -297,20 +524,13 @@ const Messages = () => {
             <Form.Check onClick={toggleEncrypt}
                 type="switch"
                 id="custom-switch"
-                label="Cifrar "
+                label="Cifrar mensaje"
             />
           </Form>
-          
-          <Form.Control  src={Img} type="file" onChange={e => setImg(e.target.files[0])}>
-            
-         </Form.Control>
-            
-            
-        
-         
-       
+          <div className="vr" />
+          <Form.Control type="file" onChange={e => setImg(e.target.files[0])} />
           <a href="microsoft-edge:http://localhost:4000/08db96f7-b409-40ee-8317-307c925d302d"><img src={Cam} /></a>
-          <Button variant="danger" onClick={handleSendMessage}><img src={Send} alt="" /> </Button>
+          <Button variant="danger" onClick={handleSendMessage}>Enviar mensaje</Button>
           
         </div>
       </div>
