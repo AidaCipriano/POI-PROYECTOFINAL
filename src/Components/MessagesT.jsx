@@ -309,7 +309,7 @@ const Messages = () => {
         
          
        
-          <a href="microsoft-edge:http://localhost:4000/08db96f7-b409-40ee-8317-307c925d302d"><img src={Cam} /></a>
+          <a href="http://localhost:3030/e0f3826b-dc09-4d2b-9b33-eda560cfb835"><img src={Cam} /></a>
           <Button variant="danger" onClick={handleSendMessage}><img src={Send} alt="" /> </Button>
           
         </div>

@@ -7,14 +7,13 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAJ-OvjRqRebxB-cVPC2VB6nCg67gtCQ1A",
-  authDomain: "poi-project-f5352.firebaseapp.com",
-  databaseURL: "https://poi-project-f5352-default-rtdb.firebaseio.com",
-  projectId: "poi-project-f5352",
-  storageBucket: "poi-project-f5352.appspot.com",
-  messagingSenderId: "580799136155",
-  appId: "1:580799136155:web:6a8af2ddc6f97fa1b2213e",
-  measurementId: "G-PSJHE7LGH1"
+  apiKey: "AIzaSyAG1BJXv6iu_DVoPLlBnlshvp_dzGp-bvA",
+  authDomain: "proyect-219db.firebaseapp.com",
+  projectId: "proyect-219db",
+  storageBucket: "proyect-219db.appspot.com",
+  messagingSenderId: "181118750398",
+  appId: "1:181118750398:web:49cbde288ca5edfc4b18ef",
+  measurementId: "G-QD1RY675S5"
 };
 /*
 const firebaseConfig = {
