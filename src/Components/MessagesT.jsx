@@ -529,7 +529,9 @@ const Messages = () => {
           </Form>
           <div className="vr" />
           <Form.Control type="file" onChange={e => setImg(e.target.files[0])} />
-          <a href="microsoft-edge:http://localhost:4000/08db96f7-b409-40ee-8317-307c925d302d"><img src={Cam} /></a>
+          <a href="http://localhost:3030/"><img src={Cam} /></a>
+
+          
           <Button variant="danger" onClick={handleSendMessage}>Enviar mensaje</Button>
           
         </div>
